@@ -12,15 +12,13 @@ from langchain.llms.openai import OpenAI
 from langchain.agents.agent_types import AgentType
 from langchain.agents import create_csv_agent
 
-api_key = os.getenv('OPENAI_API_KEY')
-
-llm = OpenAI(temperature=0, openai_api_key=api_key)
 
 api = st.sidebar.text_input(
     label="Paste your OpenAPI key here",
     type='password'
 )
 
+llm = OpenAI(temperature=0, openai_api_key=api)
 if api:
 
     csv_uploaded = st.sidebar.file_uploader("Upload", type='csv')
