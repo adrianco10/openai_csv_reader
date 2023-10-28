@@ -1,5 +1,4 @@
 import os
-
 import streamlit as st
 from streamlit_chat import message
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -12,6 +11,7 @@ from langchain.llms.openai import OpenAI
 from langchain.agents.agent_types import AgentType
 from langchain.agents import create_csv_agent
 
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 api = st.sidebar.text_input(
     label="Paste your OpenAPI key here",
@@ -19,6 +19,7 @@ api = st.sidebar.text_input(
 )
 
 llm = OpenAI(temperature=0, openai_api_key=api)
+
 if api:
 
     csv_uploaded = st.sidebar.file_uploader("Upload", type='csv')
